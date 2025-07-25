@@ -1,19 +1,9 @@
 'use client';
 
 import { useFilterStore } from '@/store/filter';
+import { categories, priceOptions } from '@/utils/helper';
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
-
-const priceOptions = [
-  { label: 'All Price', value: 'all' },
-  { label: '$0 - 99.99', value: '0-99' },
-  { label: '$100 - 199.99', value: '100-199' },
-  { label: '$200 - 299.99', value: '200-299' },
-  { label: '$300 - 399.99', value: '300-399' },
-  { label: '$400+', value: '400+' },
-];
-
-const categories = ['Electronics', 'Jewelery', "Men's Clothing", "Women's Clothing"];
 
 export default function FilterSidebar() {
   const [isOpen, setIsOpen] = useState(false);
