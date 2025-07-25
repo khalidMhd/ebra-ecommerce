@@ -1,10 +1,10 @@
-# 🛍️ Ebra E-commerce Store
+# Ebra E-commerce Store
 
 This app demonstrates modern web development practices using **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **Zustand** for cart state management.
 
-## 🚀 Features
+## Features
 
-### 🏠 Product List Page (`/`)
+### Product List Page (`/`)
 - Fetches products from the **[Fake Store API](https://fakestoreapi.com/docs)**.
 - Displays product image, title, rating and price.
 - Clicking a product navigates to the details page.
@@ -29,7 +29,7 @@ This app demonstrates modern web development practices using **Next.js (App Rout
 - **Error and loading state handling**
 - **Accessibility best practices**
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install
