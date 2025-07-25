@@ -5,13 +5,13 @@ import ProductList from '../components/product/ProductList';
 export default async function HomePage() {
 
   return (
-    <main> 
-      {/* <Header /> */}
+    <main>
       <Banner />
-      <div className="flex px-8 py-10">
+      <div className="flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 py-6 gap-6">
         <FilterSidebar />
         <ProductList />
       </div>
     </main>
+
   );
 }

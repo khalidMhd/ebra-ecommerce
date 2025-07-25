@@ -2,7 +2,7 @@
 
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cart";
-import { RenderStars } from "../renderStars";
+import { RenderStars } from "../common/RenderStars";
 import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import ProductTabs from "./ProductTabs";

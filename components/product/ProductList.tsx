@@ -5,7 +5,7 @@ import { fetchProducts } from '@/lib/api';
 import { Product } from '../../types/product';
 import ProductCard from './ProductCard';
 import { useFilterStore } from '@/store/filter';
-import SortDropdown from '.././SortDropdown';
+import SortDropdown from '../common/SortDropdown';
 import { sortOptions } from '@/utils/helper';
 
 export default function ProductList() {
@@ -71,21 +71,22 @@ export default function ProductList() {
   if (loading) return <div className="p-8">Loading products...</div>;
 
   return (
-    <div className="w-3/4">
-      <div className="flex justify-between items-center mb-4">
+    <div className="w-full md:w-3/4 px-4 sm:px-6 lg:px-0">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
         <h2 className="text-2xl font-semibold">{selectedCategory || 'All Products'}</h2>
         <SortDropdown
           sortBy={sortBy}
           setSortBy={setSortBy}
           options={sortOptions}
         />
-
       </div>
-      <div className="grid grid-cols-3 gap-4">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
+
   );
 }

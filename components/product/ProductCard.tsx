@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Product } from '../../types/product';
-import { RenderStars } from '../renderStars';
+import { RenderStars } from '../common/RenderStars';
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
