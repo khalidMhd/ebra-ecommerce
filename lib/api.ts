@@ -1,4 +1,3 @@
-// lib/api.ts
 import { Product } from "@/types/product";
 
 const BASE_URL = "https://fakestoreapi.com";
