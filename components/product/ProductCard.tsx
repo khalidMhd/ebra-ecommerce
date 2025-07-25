@@ -17,8 +17,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Image
           src={image}
           alt={title}
-          width={300} // can be adjusted based on your design
-          height={192} // 300 x 192 = 16:10 aspect ratio
+          width={300} 
+          height={192} 
           className="w-full h-48 object-contain rounded mb-2"
           style={{ objectFit: 'contain' }}
         />

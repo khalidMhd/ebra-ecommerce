@@ -7,38 +7,14 @@ import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import ProductTabs from "./ProductTabs";
 import { imageOptions } from "@/utils/helper";
+import Image from "next/image";
+import { useCountdown } from '@/hooks/useCountdown';
 
 export default function ProductDetail({ product }: { product: Product }) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
-  const [timer, setTimer] = useState({ days: 2, hours: 12, minutes: 45, seconds: 4 });
   const [selectedImage, setSelectedImage] = useState(product.image);
-
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prev) => {
-        let { days, hours, minutes, seconds } = prev;
-        if (seconds > 0) seconds--;
-        else if (minutes > 0) {
-          seconds = 59;
-          minutes--;
-        } else if (hours > 0) {
-          minutes = 59;
-          seconds = 59;
-          hours--;
-        } else if (days > 0) {
-          hours = 23;
-          minutes = 59;
-          seconds = 59;
-          days--;
-        }
-        return { days, hours, minutes, seconds };
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
+  const timer = useCountdown();
   const discountedPrice = (product.price - product.price * 0.1).toFixed(2);
 
   return (
@@ -46,11 +22,14 @@ export default function ProductDetail({ product }: { product: Product }) {
       <div className="p-6 mt-6 sm:p-10  mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
         {/* Image */}
         <div className="flex flex-col items-center">
-          <div className="w-full h-[400px] border rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden mb-4">
-            <img
+          <div className="w-full h-[550px] bg-gray-100 flex items-center justify-center overflow-hidden mb-4">
+            <Image
               src={selectedImage}
               alt={product.title}
+              width={400}
+              height={550}
               className="object-cover h-full w-full transition-all duration-300"
+              style={{ objectFit: 'contain' }}
             />
           </div>
 
