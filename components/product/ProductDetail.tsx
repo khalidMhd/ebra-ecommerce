@@ -81,7 +81,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           <p className="mt-4 text-sm text-gray-500 italic">Category: {product.category}</p>
           {/* Price */}
           <div className="flex items-center space-x-4 mt-3">
-            <p className="text-2xl text-green-600 font-semibold">${discountedPrice}</p>
+            <p className="text-2xl text-black font-semibold">${discountedPrice}</p>
             <p className="text-lg text-gray-500 line-through">${product.price}</p>
           </div>
 
@@ -155,7 +155,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           {/* Add to Cart Button */}
           <button
             onClick={() => addToCart(product)}
-            className="mt-6 bg-blue-600 hover:bg-blue-700 transition duration-300 ease-in-out text-white font-semibold py-2 px-6 rounded-full shadow-md"
+            className="mt-6 bg-black transition duration-300 ease-in-out text-white font-semibold py-2 px-6 rounded-full shadow-md"
           >
             Add to Cart
           </button>
