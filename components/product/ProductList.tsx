@@ -6,13 +6,7 @@ import { Product } from '../../types/product';
 import ProductCard from './ProductCard';
 import { useFilterStore } from '@/store/filter';
 import SortDropdown from '.././SortDropdown';
-
-const SORT_OPTIONS = [
-  { label: 'Default', value: 'default' },
-  { label: 'Price: Low to High', value: 'price_asc' },
-  { label: 'Price: High to Low', value: 'price_desc' },
-  { label: 'Rating', value: 'rating' },
-];
+import { sortOptions } from '@/utils/helper';
 
 export default function ProductList() {
   const selectedCategory = useFilterStore((state) => state.selectedCategory);
@@ -83,7 +77,7 @@ export default function ProductList() {
         <SortDropdown
           sortBy={sortBy}
           setSortBy={setSortBy}
-          options={SORT_OPTIONS}
+          options={sortOptions}
         />
 
       </div>

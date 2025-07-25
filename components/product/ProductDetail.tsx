@@ -6,6 +6,7 @@ import { RenderStars } from "../renderStars";
 import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import ProductTabs from "./ProductTabs";
+import { imageOptions } from "@/utils/helper";
 
 export default function ProductDetail({ product }: { product: Product }) {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -13,15 +14,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   const [timer, setTimer] = useState({ days: 2, hours: 12, minutes: 45, seconds: 4 });
   const [selectedImage, setSelectedImage] = useState(product.image);
 
-  // Simulate extra images (can be replaced with real `product.images` if available)
-  const imageOptions = [
-    product.image,
-    "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
-  ];
 
-  // Countdown logic (basic)
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prev) => {
@@ -53,7 +46,6 @@ export default function ProductDetail({ product }: { product: Product }) {
       <div className="p-6 mt-6 sm:p-10  mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
         {/* Image */}
         <div className="flex flex-col items-center">
-          {/* Main Image */}
           <div className="w-full h-[400px] border rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden mb-4">
             <img
               src={selectedImage}
@@ -62,9 +54,8 @@ export default function ProductDetail({ product }: { product: Product }) {
             />
           </div>
 
-          {/* Thumbnails */}
           <div className="flex space-x-3">
-            {imageOptions.map((img, index) => (
+            {[product.image, ...imageOptions].map((img, index) => (
               <img
                 key={index}
                 src={img}
@@ -77,8 +68,6 @@ export default function ProductDetail({ product }: { product: Product }) {
           </div>
         </div>
 
-
-        {/* Details */}
         <div className="flex flex-col justify-center">
           {/* Rating */}
           <div className="flex items-center space-x-2 mt-2">
@@ -86,7 +75,6 @@ export default function ProductDetail({ product }: { product: Product }) {
             <div className="text-sm text-gray-600">({product?.rating?.count ?? 0} reviews)</div>
           </div>
 
-          {/* Title */}
           <h1 className="text-3xl font-bold text-gray-800">{product.title}</h1>
           {/* Category & Description */}
           <p className="mt-6 text-gray-700 leading-relaxed">{product.description}</p>
@@ -97,7 +85,6 @@ export default function ProductDetail({ product }: { product: Product }) {
             <p className="text-lg text-gray-500 line-through">${product.price}</p>
           </div>
 
-          {/* Divider */}
           <hr className="my-4 border-gray-300" />
 
           {/* Offer Expiry */}

@@ -3,27 +3,7 @@
 import { useState } from "react";
 import { RenderStars } from "../renderStars";
 import { Send } from "lucide-react";
-
-const mockReviews = [
-    {
-        name: "Alice Johnson",
-        avatar: "https://i.pravatar.cc/150?img=10",
-        rating: 4,
-        comment: "Great quality! Definitely worth the price.",
-    },
-    {
-        name: "Mark Lee",
-        avatar: "https://i.pravatar.cc/150?img=20",
-        rating: 5,
-        comment: "Arrived fast and fits perfectly!",
-    },
-    {
-        name: "Sophie Kim",
-        avatar: "https://i.pravatar.cc/150?img=32",
-        rating: 3,
-        comment: "Decent, but colors looked a bit different.",
-    },
-];
+import { mockReviews } from "@/utils/helper";
 
 export default function ProductTabs() {
     const [activeTab, setActiveTab] = useState<"info" | "questions" | "reviews">("reviews");
@@ -35,6 +15,8 @@ export default function ProductTabs() {
             setReviewInput("");
         }
     };
+
+
 
     return (
         <div className="mt-1 mx-auto p-6">
