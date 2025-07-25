@@ -26,7 +26,6 @@ export default function CartPage() {
 
       <ProgressBar />
 
-      {/* Main Content */}
       <div className="grid md:grid-cols-3 gap-10">
         {/* Cart Items */}
         <div className="md:col-span-2">
