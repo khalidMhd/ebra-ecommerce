@@ -14,7 +14,6 @@ export default function Header() {
 
   return (
     <header className="flex justify-between items-center px-6 py-4 shadow-md relative z-50 bg-white">
-      {/* Logo */}
       <div className="text-2xl font-bold">Ibraa</div>
 
       {/* Desktop Nav */}

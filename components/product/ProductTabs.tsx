@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RenderStars } from "../renderStars";
+import { RenderStars } from "../common/RenderStars";
 import { Send } from "lucide-react";
 import { mockReviews } from "@/utils/helper";
 
@@ -15,8 +15,6 @@ export default function ProductTabs() {
             setReviewInput("");
         }
     };
-
-
 
     return (
         <div className="mt-1 mx-auto p-6">

@@ -110,7 +110,6 @@ export default function ProductDetail({ product }: { product: Product }) {
             </div>
           </div>
 
-          {/* Divider */}
           <hr className="my-4 border-gray-300" />
 
           {/* Measurements */}
@@ -152,7 +151,6 @@ export default function ProductDetail({ product }: { product: Product }) {
             </button>
           </div>
 
-          {/* Add to Cart Button */}
           <button
             onClick={() => addToCart(product)}
             className="mt-6 bg-black transition duration-300 ease-in-out text-white font-semibold py-2 px-6 rounded-full shadow-md"
