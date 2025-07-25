@@ -7,6 +7,7 @@ import ProductCard from './ProductCard';
 import { useFilterStore } from '@/store/filter';
 import SortDropdown from '../common/SortDropdown';
 import { sortOptions } from '@/utils/helper';
+import Loader from '../common/Loader';
 
 export default function ProductList() {
   const selectedCategory = useFilterStore((state) => state.selectedCategory);
@@ -25,7 +26,7 @@ export default function ProductList() {
         setAllProducts(products);
         setFilteredProducts(products);
       } catch (error) {
-        console.error('Failed to load products:', error);
+        return <div className="p-8">Failed to load products</div>;
       } finally {
         setLoading(false);
       }
@@ -68,7 +69,7 @@ export default function ProductList() {
     setFilteredProducts(filtered);
   }, [selectedCategory, selectedPriceRanges, allProducts, sortBy]);
 
-  if (loading) return <div className="p-8">Loading products...</div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="w-full md:w-3/4 px-4 sm:px-6 lg:px-0">

@@ -5,10 +5,10 @@ export const imageOptions = [
 ];
 
 export const sortOptions = [
-  { label: 'Default', value: 'default' },
-  { label: 'Price: Low to High', value: 'price_asc' },
-  { label: 'Price: High to Low', value: 'price_desc' },
-  { label: 'Rating', value: 'rating' },
+    { label: 'Default', value: 'default' },
+    { label: 'Price: Low to High', value: 'price_asc' },
+    { label: 'Price: High to Low', value: 'price_desc' },
+    { label: 'Rating', value: 'rating' },
 ];
 
 export const mockReviews = [
@@ -31,3 +31,14 @@ export const mockReviews = [
         comment: "Decent, but colors looked a bit different.",
     },
 ];
+
+export const priceOptions = [
+    { label: 'All Price', value: 'all' },
+    { label: '$0 - 99.99', value: '0-99' },
+    { label: '$100 - 199.99', value: '100-199' },
+    { label: '$200 - 299.99', value: '200-299' },
+    { label: '$300 - 399.99', value: '300-399' },
+    { label: '$400+', value: '400+' },
+];
+
+export const categories = ['Electronics', 'Jewelery', "Men's Clothing", "Women's Clothing"];
