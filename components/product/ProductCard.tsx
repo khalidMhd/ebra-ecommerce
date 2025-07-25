@@ -1,22 +1,35 @@
 import Link from 'next/link';
-import { Product } from '../../types/product';
+import { Product } from '@/types/product';
 import { RenderStars } from '../common/RenderStars';
+import Image from 'next/image';
 
-export default function ProductCard({ product }: { product: Product }) {
+type ProductCardProps = {
+  product: Product;
+};
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const { id, image, title, price, rating } = product;
+  const truncatedTitle = title.length > 35 ? `${title.slice(0, 35)}...` : title;
+
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/product/${id}`} aria-label={`View details for ${title}`}>
       <div className="border rounded-lg p-4 hover:shadow-lg cursor-pointer transition">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-48 object-cover rounded"
+        <Image
+          src={image}
+          alt={title}
+          width={300} // can be adjusted based on your design
+          height={192} // 300 x 192 = 16:10 aspect ratio
+          className="w-full h-48 object-contain rounded mb-2"
+          style={{ objectFit: 'contain' }}
         />
-        <div className="flex items-center space-x-2 mt-2">
-          <div className="flex">{RenderStars(product?.rating?.rate ?? 0)}</div>
-          <div className="text-sm text-gray-600">({product?.rating?.count ?? 0} reviews)</div>
+
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
+          <div className="flex">{RenderStars(rating?.rate ?? 0)}</div>
+          <span>({rating?.count ?? 0} reviews)</span>
         </div>
-        {product.title.length > 35 ? product.title.slice(0, 35) + '...' : product.title}
-        <p className="text-gray-600">${product.price.toFixed(2)}</p>
+
+        <h3 className="text-md font-semibold">{truncatedTitle}</h3>
+        <p className="text-blue-700 font-medium">${price.toFixed(2)}</p>
       </div>
     </Link>
   );

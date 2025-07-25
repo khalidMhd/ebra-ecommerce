@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchProducts } from '@/lib/api';
-import { Product } from '../../types/product';
+import { Product } from '@/types/product';
 import ProductCard from './ProductCard';
 import { useFilterStore } from '@/store/filter';
 import SortDropdown from '../common/SortDropdown';
@@ -10,13 +10,11 @@ import { sortOptions } from '@/utils/helper';
 import Loader from '../common/Loader';
 
 export default function ProductList() {
-  const selectedCategory = useFilterStore((state) => state.selectedCategory);
-  const selectedPriceRanges = useFilterStore((state) => state.selectedPriceRanges);
-
+  const { selectedCategory, selectedPriceRanges } = useFilterStore();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState('default');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [sortBy, setSortBy] = useState<string>('default');
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -26,46 +24,47 @@ export default function ProductList() {
         setAllProducts(products);
         setFilteredProducts(products);
       } catch (error) {
-        return <div className="p-8">Failed to load products</div>;
+        console.error('Failed to load products:', error);
       } finally {
         setLoading(false);
       }
     };
+
     loadProducts();
   }, []);
 
   useEffect(() => {
     if (allProducts.length === 0) return;
 
-    function priceInRanges(price: number) {
-      if (selectedPriceRanges.length === 0) return true;
+    const priceInRanges = (price: number): boolean => {
+      if (!selectedPriceRanges.length) return true;
+
       return selectedPriceRanges.some((range) => {
-        switch (range) {
-          case '0-99': return price >= 0 && price <= 99.99;
-          case '100-199': return price >= 100 && price <= 199.99;
-          case '200-299': return price >= 200 && price <= 299.99;
-          case '300-399': return price >= 300 && price <= 399.99;
-          case '400+': return price >= 400;
-          default: return false;
-        }
+        const [min, max] = range === '400+' ? [400, Infinity] : range.split('-').map(Number);
+        return price >= min && price <= max;
       });
-    }
+    };
 
     let filtered = allProducts.filter((product) => {
-      const categoryMatch = selectedCategory ? product.category?.toLocaleLowerCase() === selectedCategory?.toLocaleLowerCase() : true;
+      const categoryMatch = selectedCategory
+        ? product.category?.toLowerCase() === selectedCategory.toLowerCase()
+        : true;
       const priceMatch = priceInRanges(product.price);
       return categoryMatch && priceMatch;
     });
 
-    // Sorting logic
-    if (sortBy === 'price_asc') {
-      filtered = filtered.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price_desc') {
-      filtered = filtered.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'rating') {
-      filtered = filtered.sort((a, b) => (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0));
-
+    switch (sortBy) {
+      case 'price_asc':
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case 'price_desc':
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'rating':
+        filtered.sort((a, b) => (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0));
+        break;
     }
+
     setFilteredProducts(filtered);
   }, [selectedCategory, selectedPriceRanges, allProducts, sortBy]);
 
@@ -74,7 +73,9 @@ export default function ProductList() {
   return (
     <div className="w-full md:w-3/4 px-4 sm:px-6 lg:px-0">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-        <h2 className="text-2xl font-semibold">{selectedCategory || 'All Products'}</h2>
+        <h2 className="text-2xl font-semibold capitalize">
+          {selectedCategory || 'All Products'}
+        </h2>
         <SortDropdown
           sortBy={sortBy}
           setSortBy={setSortBy}
@@ -88,6 +89,5 @@ export default function ProductList() {
         ))}
       </div>
     </div>
-
   );
 }
