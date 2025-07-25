@@ -1,6 +1,6 @@
 'use client';
 
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface SortOption {
@@ -38,11 +38,10 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ sortBy, setSortBy, options 
                   setSortBy(value);
                   setIsOpen(false);
                 }}
-                className={`block w-full px-4 py-2 text-sm text-left ${
-                  sortBy === value
+                className={`block w-full px-4 py-2 text-sm text-left ${sortBy === value
                     ? 'bg-gray-100 text-black font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {label}
               </button>
