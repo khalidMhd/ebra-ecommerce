@@ -19,7 +19,7 @@ export default function ProductDetail({ product }: { product: Product }) {
 
   return (
     <>
-      <div className="p-6 mt-6 sm:p-10  mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
+      <div className="p-6 sm:p-10  mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 ">
         {/* Image */}
         <div className="flex flex-col items-center">
           <div className="w-full h-[550px] bg-gray-100 flex items-center justify-center overflow-hidden mb-4">
