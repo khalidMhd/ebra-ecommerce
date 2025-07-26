@@ -32,11 +32,13 @@ This app demonstrates modern web development practices using **Next.js (App Rout
 - **Error and loading state handling**
 - **Accessibility best practices**
 
-## Installation
+## Setup
 
 ```bash
-npm install
+git https://github.com/khalidMhd/ebra-ecommerce.git
+cd  ebra-ecommerce
 
+npm install
 npm start
 
 ```
