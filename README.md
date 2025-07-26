@@ -2,6 +2,10 @@
 
 ![Home](public/assets/home.png)
 
+![Product](public/assets/product.png)
+
+![Cart](public/assets/cart.png)
+
 
 This app demonstrates modern web development practices using **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **Zustand** for cart state management.
 
