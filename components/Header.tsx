@@ -4,8 +4,11 @@ import { useCartStore } from '@/store/cart';
 import { ShoppingCart, User, Search, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import AlertModal from './common/AlertModal';
 
 export default function Header() {
+  const [showModal, setShowModal] = useState(false);
+
   const cartCount = useCartStore((state) =>
     state.cart.reduce((total, item) => total + item.quantity, 0)
   );
@@ -26,8 +29,8 @@ export default function Header() {
 
       {/* Desktop Icons */}
       <div className="hidden md:flex space-x-4">
-        <Search className="cursor-pointer" />
-        <User className="cursor-pointer" />
+        <Search onClick={() => setShowModal(true)} className="cursor-pointer" />
+        <User onClick={() => setShowModal(true)}  className="cursor-pointer" />
         <div className="relative">
           <Link href={`/cart`}>
             <ShoppingCart className="cursor-pointer" />
@@ -49,9 +52,9 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col space-y-4 md:hidden">
           <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-blue-600 font-semibold">Home</Link>
-          <Link href="/shop" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Shop</Link>
-          <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Product</Link>
-          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Contact Us</Link>
+          <Link href="#" onClick={() => setMobileMenuOpen(false) } className="hover:text-blue-600">Shop</Link>
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Product</Link>
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-600">Contact Us</Link>
 
           <div className="flex space-x-4 pt-2 border-t">
             <Search className="cursor-pointer" />
@@ -66,6 +69,9 @@ export default function Header() {
             </div>
           </div>
         </div>
+      )}
+      {showModal && (
+        <AlertModal message="This feature is not implemented yet." onClose={() => setShowModal(false)} />
       )}
     </header>
   );

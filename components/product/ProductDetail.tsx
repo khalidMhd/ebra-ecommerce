@@ -9,6 +9,7 @@ import ProductTabs from "./ProductTabs";
 import { imageOptions } from "@/utils/helper";
 import Image from "next/image";
 import { useCountdown } from '@/hooks/useCountdown';
+import AlertModal from "../common/AlertModal";
 
 export default function ProductDetail({ product }: { product: Product }) {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -16,6 +17,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   const [selectedImage, setSelectedImage] = useState(product.image);
   const timer = useCountdown();
   const discountedPrice = (product.price - product.price * 0.1).toFixed(2);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -124,15 +126,15 @@ export default function ProductDetail({ product }: { product: Product }) {
                 +
               </button>
             </div>
-            <button className="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition">
+            <button onClick={() => setShowModal(true)} className="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition cursor-pointer">
               <Heart className="w-5 h-5" />
               <span>Add to Wishlist</span>
             </button>
           </div>
 
           <button
+            className="mt-6 bg-black transition duration-300 ease-in-out text-white font-semibold py-2 px-6 rounded-full shadow-md cursor-pointer"
             onClick={() => addToCart(product)}
-            className="mt-6 bg-black transition duration-300 ease-in-out text-white font-semibold py-2 px-6 rounded-full shadow-md"
           >
             Add to Cart
           </button>
@@ -142,6 +144,10 @@ export default function ProductDetail({ product }: { product: Product }) {
 
       </div>
       <ProductTabs />
+
+      {showModal && (
+        <AlertModal message="This feature is not implemented yet." onClose={() => setShowModal(false)} />
+      )}
     </>
   );
 }

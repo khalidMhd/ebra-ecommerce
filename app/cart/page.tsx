@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 import ProgressBar from "@/components/cart/progressBar";
 import CouponComponent from "@/components/cart/Coupon";
+import AlertModal from "@/components/common/AlertModal";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -12,6 +13,7 @@ export default function CartPage() {
   const incrementQuantity = useCartStore((state) => state.incrementQuantity);
   const decrementQuantity = useCartStore((state) => state.decrementQuantity);
   const total = useCartStore((state) => state.total);
+  const [showModal, setShowModal] = useState(false);
 
   const [shipping, setShipping] = useState(0);
 
@@ -110,11 +112,16 @@ export default function CartPage() {
             <span>${(total() + shipping).toFixed(2)}</span>
           </div>
 
-          <button className="w-full bg-black text-white py-2 rounded-md transition">Proceed to Checkout</button>
+          <button className="w-full bg-black text-white py-2 rounded-md transition" onClick={() => setShowModal(true)}
+          >Proceed to Checkout</button>
         </div>
       </div>
 
       <CouponComponent />
+
+      {showModal && (
+        <AlertModal message="This feature is not implemented yet." onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 }
