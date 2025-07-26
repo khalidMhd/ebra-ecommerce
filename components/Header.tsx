@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <header className="flex justify-between items-center px-6 py-4 shadow-md relative z-50 bg-white">
-      <div className="text-2xl font-bold">Ibraa</div>
+      <div className="text-2xl font-bold">Ebra</div>
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex space-x-6">

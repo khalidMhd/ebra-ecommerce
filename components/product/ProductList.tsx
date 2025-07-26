@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchProducts } from '@/lib/api';
+import { fetchProducts } from '@/api/fakeStore';
 import { Product } from '@/types/product';
 import ProductCard from './ProductCard';
 import { useFilterStore } from '@/store/filter';

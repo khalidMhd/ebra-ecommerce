@@ -1,4 +1,4 @@
-import { fetchProductById } from "@/lib/api";
+import { fetchProductById } from "@/api/fakeStore";
 import ProductDetail from "@/components/product/ProductDetail";
 
 type ProductDetailPageProps = {
