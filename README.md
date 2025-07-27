@@ -35,7 +35,7 @@ This app demonstrates modern web development practices using **Next.js (App Rout
 ## Setup
 
 ```bash
-git https://github.com/khalidMhd/ebra-ecommerce.git
+git clone https://github.com/khalidMhd/ebra-ecommerce.git
 cd  ebra-ecommerce
 
 npm install
